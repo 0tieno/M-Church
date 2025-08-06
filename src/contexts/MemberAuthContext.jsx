@@ -31,20 +31,59 @@ export const MemberAuthProvider = ({ children }) => {
     setIsLoading(false);
   }, []);
 
+  // Normalize phone number for comparison (handle different formats)
+  const normalizePhone = (phone) => {
+    if (!phone) return "";
+    // Remove all non-digit characters
+    const digitsOnly = phone.replace(/\D/g, "");
+
+    // If it starts with 254, return as is
+    if (digitsOnly.startsWith("254")) {
+      return digitsOnly;
+    }
+
+    // If it starts with 0, replace with 254
+    if (digitsOnly.startsWith("0")) {
+      return "254" + digitsOnly.substring(1);
+    }
+
+    // Otherwise return as is
+    return digitsOnly;
+  };
+
   // Verify member exists in system by phone number
   const verifyMember = (phone) => {
     if (!Array.isArray(transactions) || transactions.length === 0) {
       return null;
     }
 
-    // Find member by phone number in transactions
-    const memberTransaction = transactions.find((t) => t.phone === phone);
+    const normalizedInputPhone = normalizePhone(phone);
+
+    // Find member by phone number in transactions (try different formats)
+    const memberTransaction = transactions.find((t) => {
+      const normalizedTransactionPhone = normalizePhone(t.phone);
+      return (
+        normalizedTransactionPhone === normalizedInputPhone ||
+        t.phone === phone ||
+        t.phone === `+${normalizedInputPhone}` ||
+        t.phone === normalizedInputPhone
+      );
+    });
+
     if (!memberTransaction) {
       return null;
     }
 
-    // Get all transactions for this member
-    const memberTransactions = transactions.filter((t) => t.phone === phone);
+    // Get all transactions for this member using the same matching logic
+    const memberTransactions = transactions.filter((t) => {
+      const normalizedTransactionPhone = normalizePhone(t.phone);
+      return (
+        normalizedTransactionPhone === normalizedInputPhone ||
+        t.phone === phone ||
+        t.phone === `+${normalizedInputPhone}` ||
+        t.phone === normalizedInputPhone
+      );
+    });
 
     // Calculate member statistics
     const totalGiving = memberTransactions.reduce(
@@ -80,6 +119,16 @@ export const MemberAuthProvider = ({ children }) => {
     try {
       // In a real app, you'd send SMS verification first
       if (!verificationCode) {
+        // First verify that the member exists in the system
+        const member = verifyMember(phone);
+        if (!member) {
+          return {
+            success: false,
+            message:
+              "No giving records found for this phone number. Please contact the church office.",
+          };
+        }
+
         // Simulate sending SMS verification code
         const randomCode = Math.floor(
           100000 + Math.random() * 900000
@@ -104,25 +153,30 @@ export const MemberAuthProvider = ({ children }) => {
         };
       }
 
-      // Verify the SMS code
+      // Verify the SMS code - accept both the generated code and demo code
       const storedCode = sessionStorage.getItem(`verification_${phone}`);
       const expiry = sessionStorage.getItem(`verification_${phone}_expiry`);
 
-      if (!storedCode || !expiry || Date.now() > parseInt(expiry)) {
+      // Check if verification code expired (but allow demo code)
+      if (
+        verificationCode !== "123456" &&
+        (!storedCode || !expiry || Date.now() > parseInt(expiry))
+      ) {
         return {
           success: false,
           message: "Verification code expired. Please request a new one.",
         };
       }
 
-      if (storedCode !== verificationCode) {
+      // Accept either the stored code or demo code '123456'
+      if (verificationCode !== "123456" && storedCode !== verificationCode) {
         return {
           success: false,
           message: "Invalid verification code.",
         };
       }
 
-      // Verify member exists in system
+      // Verify member exists in system again
       const member = verifyMember(phone);
       if (!member) {
         return {
