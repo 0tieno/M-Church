@@ -1,9 +1,9 @@
-import React from 'react'
-import { useAuth } from '../../contexts/AuthContext'
-import { LogOut, Church, User } from 'lucide-react'
+import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { LogOut, Church, User } from "lucide-react";
 
 const Layout = ({ children }) => {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -14,11 +14,13 @@ const Layout = ({ children }) => {
             <div className="flex items-center">
               <Church className="h-8 w-8 text-blue-600 mr-3" />
               <div>
-                <h1 className="text-xl font-bold text-gray-900">SacredLedger</h1>
+                <h1 className="text-xl font-bold text-gray-900">
+                  SacredLedger
+                </h1>
                 <p className="text-xs text-gray-500">M-Church Records</p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <User className="h-4 w-4 text-gray-400" />
@@ -27,7 +29,7 @@ const Layout = ({ children }) => {
                   <p className="text-gray-500">{user?.church}</p>
                 </div>
               </div>
-              
+
               <button
                 onClick={logout}
                 className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
@@ -45,7 +47,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
