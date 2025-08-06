@@ -4,7 +4,8 @@ import StatementUpload from "../upload/StatementUpload";
 import DashboardStats from "../dashboard/DashboardStats";
 import TransactionList from "../transactions/TransactionList";
 import ActivityLogs from "../logs/ActivityLogs";
-import { Upload, BarChart3, List, Activity } from "lucide-react";
+import ReceiptManagement from "../receipts/ReceiptManagement";
+import { Upload, BarChart3, List, Activity, Receipt } from "lucide-react";
 
 const TreasurerDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -14,6 +15,7 @@ const TreasurerDashboard = () => {
     { id: "dashboard", name: "Dashboard", icon: BarChart3 },
     { id: "upload", name: "Upload Statement", icon: Upload },
     { id: "transactions", name: "Transactions", icon: List },
+    { id: "receipts", name: "Receipts", icon: Receipt },
     { id: "logs", name: "Activity Logs", icon: Activity },
   ];
 
@@ -25,6 +27,8 @@ const TreasurerDashboard = () => {
         return <StatementUpload />;
       case "transactions":
         return <TransactionList />;
+      case "receipts":
+        return <ReceiptManagement />;
       case "logs":
         return <ActivityLogs />;
       default:

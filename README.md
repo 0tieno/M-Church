@@ -15,6 +15,10 @@ A comprehensive church financial management system focused on automating M-Pesa 
 - **📁 Batch Management**: Organized tracking of upload batches
 - **📋 Activity Logging**: Comprehensive audit trail of all system activities
 - **📈 Export Functionality**: CSV export of filtered transaction data
+- **🧾 Modern Receipt Generation**: Multi-format receipt system with PDF, digital, and SMS options
+- **📱 Digital Receipts**: QR codes, web links, and mobile-optimized sharing
+- **🖨️ Print-Optimized Receipts**: Professional print layouts with proper formatting
+- **📊 Member Receipt Summaries**: Bulk receipt generation and SMS batch processing
 
 ### 🛠 Technical Stack
 
@@ -23,6 +27,8 @@ A comprehensive church financial management system focused on automating M-Pesa 
 - **Routing**: React Router DOM 7
 - **Icons**: Lucide React
 - **CSV Parsing**: PapaParse
+- **PDF Generation**: jsPDF + html2canvas
+- **QR Codes**: qrcode library
 - **Data Storage**: LocalStorage (for demo - easily replaceable with backend)
 
 ## 🎯 Quick Start
