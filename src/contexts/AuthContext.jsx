@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
           email: "treasurer@sacredledger.org",
           name: "Treasurer",
           role: "Treasurer",
-          church: "New Hope SDA Church",
+          church: "KYUSDA Church",
         };
         setUser(userData);
         localStorage.setItem("sacredledger_user", JSON.stringify(userData));
