@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { LogOut, Church, User } from "lucide-react";
+import { LogOut, Church, User, Users } from "lucide-react";
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -22,6 +22,16 @@ const Layout = ({ children }) => {
             </div>
 
             <div className="flex items-center space-x-4">
+              <a
+                href="/member"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-3 py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200"
+              >
+                <Users className="h-4 w-4" />
+                <span>Member Portal</span>
+              </a>
+
               <div className="flex items-center space-x-2">
                 <User className="h-4 w-4 text-gray-400" />
                 <div className="text-sm">
