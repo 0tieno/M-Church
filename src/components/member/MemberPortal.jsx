@@ -71,16 +71,18 @@ const MemberPortal = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <MemberNavigation 
-        activeTab={activeView} 
+      <MemberNavigation
+        activeTab={activeView}
         setActiveTab={setActiveView}
         onSidebarToggle={setSidebarCollapsed}
       />
 
       {/* Main Content */}
-      <main className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 transition-all duration-300 ${
-        sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
-      }`}>
+      <main
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 transition-all duration-300 ${
+          sidebarCollapsed ? "lg:ml-16" : "lg:ml-64"
+        }`}
+      >
         {renderView()}
       </main>
 

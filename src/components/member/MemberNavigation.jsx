@@ -17,7 +17,8 @@ import {
 const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
   const { memberUser, memberLogout } = useMemberAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = useState(false);
+  const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] =
+    useState(false);
 
   const navigationItems = [
     { id: "dashboard", name: "Dashboard", icon: Home },
@@ -50,21 +51,23 @@ const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
   // Handle escape key to close mobile menu
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape' && isMobileMenuOpen) {
+      if (event.key === "Escape" && isMobileMenuOpen) {
         closeMobileMenu();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isMobileMenuOpen]);
 
   return (
     <>
       {/* Desktop Navigation */}
-      <div className={`hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 transition-all duration-300 ${
-        isDesktopSidebarCollapsed ? 'lg:w-16' : 'lg:w-64'
-      }`}>
+      <div
+        className={`hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 transition-all duration-300 ${
+          isDesktopSidebarCollapsed ? "lg:w-16" : "lg:w-64"
+        }`}
+      >
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
           {/* Logo and Collapse Button */}
           <div className="flex items-center justify-between px-4 mb-8">
@@ -81,7 +84,7 @@ const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
                 </div>
               </div>
             )}
-            
+
             {isDesktopSidebarCollapsed && (
               <div className="w-full flex justify-center">
                 <div className="bg-blue-600 rounded-lg p-2">
@@ -89,15 +92,21 @@ const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
                 </div>
               </div>
             )}
-            
+
             <button
               onClick={toggleDesktopSidebar}
               className="p-1.5 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-              title={isDesktopSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              title={
+                isDesktopSidebarCollapsed
+                  ? "Expand sidebar"
+                  : "Collapse sidebar"
+              }
             >
-              <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${
-                isDesktopSidebarCollapsed ? 'rotate-180' : ''
-              }`} />
+              <ChevronLeft
+                className={`h-4 w-4 transition-transform duration-200 ${
+                  isDesktopSidebarCollapsed ? "rotate-180" : ""
+                }`}
+              />
             </button>
           </div>
 
@@ -136,11 +145,13 @@ const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
                     isActive
                       ? "bg-blue-100 text-blue-900 border-r-2 border-blue-600"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                  } ${isDesktopSidebarCollapsed ? 'justify-center' : ''}`}
-                  title={isDesktopSidebarCollapsed ? item.name : ''}
+                  } ${isDesktopSidebarCollapsed ? "justify-center" : ""}`}
+                  title={isDesktopSidebarCollapsed ? item.name : ""}
                 >
                   <Icon
-                    className={`${isDesktopSidebarCollapsed ? '' : 'mr-3'} flex-shrink-0 h-5 w-5 ${
+                    className={`${
+                      isDesktopSidebarCollapsed ? "" : "mr-3"
+                    } flex-shrink-0 h-5 w-5 ${
                       isActive
                         ? "text-blue-600"
                         : "text-gray-400 group-hover:text-gray-500"
@@ -157,12 +168,16 @@ const MemberNavigation = ({ activeTab, setActiveTab, onSidebarToggle }) => {
             <button
               onClick={handleLogout}
               className={`group flex items-center w-full px-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-red-50 hover:text-red-700 transition-colors duration-150 ${
-                isDesktopSidebarCollapsed ? 'justify-center' : ''
+                isDesktopSidebarCollapsed ? "justify-center" : ""
               }`}
-              title={isDesktopSidebarCollapsed ? 'Sign Out' : ''}
+              title={isDesktopSidebarCollapsed ? "Sign Out" : ""}
             >
-              <LogOut className={`${isDesktopSidebarCollapsed ? '' : 'mr-3'} flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-red-500`} />
-              {!isDesktopSidebarCollapsed && 'Sign Out'}
+              <LogOut
+                className={`${
+                  isDesktopSidebarCollapsed ? "" : "mr-3"
+                } flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-red-500`}
+              />
+              {!isDesktopSidebarCollapsed && "Sign Out"}
             </button>
           </div>
         </div>

@@ -69,16 +69,18 @@ A comprehensive church financial management system with dual interfaces - a powe
    ```
 
 4. Open your browser:
-   - **Admin Dashboard**: `http://localhost:5173` 
+   - **Admin Dashboard**: `http://localhost:5173`
    - **Member Portal**: `http://localhost:5173/member`
 
 ### Demo Access
 
 #### Admin Dashboard
+
 - **Email**: `treasurer@sacredledger.org`
 - **Password**: `password123`
 
 #### Member Portal
+
 - **Phone Number**: Use any phone number from uploaded M-Pesa data
 - **Verification Code**: `123456` (demo code works for all members)
 
@@ -162,8 +164,9 @@ Completion Time,Amount,Account Number,Sender Name,Phone Number
 - Examples: `768769#Tithe`, `768769#Offering`, `768769#Camp Meeting`
 
 **Phone Number Formats Supported**:
+
 - International: `+254712345678`
-- National: `254712345678` 
+- National: `254712345678`
 - Local: `0712345678`
 
 (All formats are automatically normalized for member portal access)
@@ -219,6 +222,7 @@ src/
 ## 🚀 Deployment Ready
 
 The system is designed for easy deployment with:
+
 - Environment-based configuration
 - Modular component architecture
 - Responsive design for all screen sizes
@@ -229,6 +233,7 @@ The system is designed for easy deployment with:
 ## 📱 Mobile Experience
 
 Both admin and member interfaces are fully responsive:
+
 - **Admin Dashboard**: Tablet and desktop optimized for data management
 - **Member Portal**: Mobile-first design for easy smartphone access
 - **Touch-Friendly**: Large buttons and gesture-friendly interactions
