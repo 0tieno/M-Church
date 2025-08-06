@@ -177,7 +177,7 @@ const MemberLogin = () => {
               Digital Receipts
             </h3>
             <p className="text-sm text-gray-600">
-              Download and share your giving receipts
+              Download your giving receipts
             </p>
           </div>
         </div>
