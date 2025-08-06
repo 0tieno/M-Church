@@ -5,11 +5,15 @@ import ReceiptGenerator from "./ReceiptGenerator";
 import ReceiptPreview from "./ReceiptPreview";
 import MemberReceiptSummary from "./MemberReceiptSummary";
 import IndividualMemberReceipts from "./IndividualMemberReceipts";
+import BulkSMSReceipts from "./BulkSMSReceipts";
+import SMSSettings from "./SMSSettings";
 import {
   Receipt,
   FileText,
   Users,
   User,
+  Send,
+  Settings,
   Download,
   Calendar,
   Filter,
@@ -32,6 +36,8 @@ const ReceiptManagement = () => {
     { id: "preview", name: "Preview & Print", icon: FileText },
     { id: "member-summary", name: "Member Summaries", icon: Users },
     { id: "individual", name: "Individual Members", icon: User },
+    { id: "bulk-sms", name: "Bulk SMS", icon: Send },
+    { id: "sms-settings", name: "SMS Settings", icon: Settings },
   ];
 
   const uniqueMembers = React.useMemo(() => {
@@ -86,6 +92,10 @@ const ReceiptManagement = () => {
         );
       case "individual":
         return <IndividualMemberReceipts />;
+      case "bulk-sms":
+        return <BulkSMSReceipts />;
+      case "sms-settings":
+        return <SMSSettings />;
       default:
         return <ReceiptGenerator />;
     }
