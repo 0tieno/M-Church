@@ -4,10 +4,12 @@ import { useAuth } from "../../contexts/AuthContext";
 import ReceiptGenerator from "./ReceiptGenerator";
 import ReceiptPreview from "./ReceiptPreview";
 import MemberReceiptSummary from "./MemberReceiptSummary";
+import IndividualMemberReceipts from "./IndividualMemberReceipts";
 import {
   Receipt,
   FileText,
   Users,
+  User,
   Download,
   Calendar,
   Filter,
@@ -29,6 +31,7 @@ const ReceiptManagement = () => {
     { id: "generator", name: "Generate Receipts", icon: Receipt },
     { id: "preview", name: "Preview & Print", icon: FileText },
     { id: "member-summary", name: "Member Summaries", icon: Users },
+    { id: "individual", name: "Individual Members", icon: User },
   ];
 
   const uniqueMembers = React.useMemo(() => {
@@ -81,6 +84,8 @@ const ReceiptManagement = () => {
             members={uniqueMembers}
           />
         );
+      case "individual":
+        return <IndividualMemberReceipts />;
       default:
         return <ReceiptGenerator />;
     }
