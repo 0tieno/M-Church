@@ -10,6 +10,7 @@ import { Loader, AlertCircle } from "lucide-react";
 const MemberPortal = () => {
   const { currentMember, isLoading, error } = useMemberAuth();
   const [activeView, setActiveView] = useState("dashboard");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Show loading state
   if (isLoading) {
@@ -70,10 +71,16 @@ const MemberPortal = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <MemberNavigation activeView={activeView} onViewChange={setActiveView} />
+      <MemberNavigation 
+        activeTab={activeView} 
+        setActiveTab={setActiveView}
+        onSidebarToggle={setSidebarCollapsed}
+      />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 transition-all duration-300 ${
+        sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
+      }`}>
         {renderView()}
       </main>
 
